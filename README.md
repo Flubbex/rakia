@@ -4,72 +4,80 @@
 ## Usage
                    
 ### Creating a static value 
-    module.exports = {
-      name: "someData",
-      type: "value",
-      call: "Hello World!"
-    }
-    
+```js
+module.exports = {
+  name: "someData",
+  type: "value",
+  call: "Hello World!"
+}
+```
+
 ### Creating a service factory    
-    module.exports = {
-      name: "someFactory",
-      type: "factory",
-      requires: ["someData"],
-      call: function(container)
-      {
-        //factories get the container as argument
-        var someFactory = function(data){
-          this.data = data
-        }
-
-        return new someFactory(container.someData)
-      }
-
+```js
+module.exports = {
+  name: "someFactory",
+  type: "factory",
+  requires: ["someData"],
+  call: function(container)
+  {
+    //factories get the container as argument
+    var someFactory = function(data){
+      this.data = data
     }
-    
+    return new someFactory(container.someData)
+  }
+
+}
+```
+
 ### Creating a service provider
-    module.exports = {
-      name: "someProvider",
-      type: "provider",
-      requires: ["someFactory","someData"],
-      call: function(someFactory,someData)
-      {
-        
-        var factoryPolyfill = () => "Hello world!",
-        
-        //replace HelloWorld with a polyfill if we're missing data
-            helloWorld = someData ? factory : factoryPolyfill
+```js
+module.exports = {
+  name: "someProvider",
+  type: "provider",
+  requires: ["someFactory","someData"],
+  call: function(someFactory,someData)
+  {
+    var factoryPolyfill = () => "Hello world!",
 
-        // this is the service factory
-        this.$get = function(container){
-          return {
-            helloWorld
-          }
-        }
+    //replace HelloWorld with a polyfill if we're missing data
+        helloWorld = someData ? factory : factoryPolyfill
+
+    // this is the service factory
+    this.$get = function(container){
+      return {
+        helloWorld
       }
     }
+  }
+}
+```
 
 ### Creating a service    
-    module.exports = {
-      name: "someService",
-      type: "service",
-      requires: ["someProvider"],
-      call:function(someProvider){
+```js
+module.exports = {
+  name: "someService",
+  type: "service",
+  requires: ["someProvider"],
+  call:function(someProvider){
 
-        this.helloWorld = someProvider.helloWorld
+    this.helloWorld = someProvider.helloWorld
 
-      }
-    }
-    
+  }
+}
+```    
+
 ### Tying it all together
-    var rakia = require('rakia'),
-        application = rakia(__dirname+'/data', 
-                            __dirname+'/services',
-                            __dirname+'/factories', 
-                            __dirname+'/providers')
-        
-    // Returns "Hello World" 
-    application.container.someService.helloWorld()
+```js
+var rakia = require('rakia'),
+    application = rakia(__dirname+'/data', 
+                        __dirname+'/services',
+                        __dirname+'/factories', 
+                        __dirname+'/providers')
+                        
+// Returns "Hello World" 
+application.container.someService.helloWorld()
+```
 
 ## Module properties
 
