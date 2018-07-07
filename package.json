@@ -1,0 +1,24 @@
+{
+  "name": "rakia",
+  "version": "1.0.0",
+  "description": "Minimalistic module loader based on require-all and BottleJS",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "bottlejs",
+    "require-all",
+    "module",
+    "loader"
+  ],
+  "author": "Flubbex",
+  "license": "MIT",
+  "devDependencies": {
+    "bottlejs": "^1.7.1",
+    "require-all": "^3.0.0"
+  }
+}
