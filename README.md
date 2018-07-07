@@ -1,5 +1,4 @@
 # RakiaJS
-----
 *Minimalistic module loader based on [require-all](https://www.npmjs.com/package/require-all) and [BottleJS](https://github.com/young-steveo/bottlejs)*
 
 ## Usage
