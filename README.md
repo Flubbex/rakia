@@ -81,6 +81,17 @@
 | requires  | Array of names to import to module call  | Array of string names  | No
 | call      | Value or module constructor | Any function | Yes 
 
+## Installation
+From Github
+
+    git clone https://github.com/Flubbex/rakia.git
+    cd rakia && npm install
+    
+To import:
+    
+    var rakia = require('./rakia')
+    var application = rakia()
+    
 ## Dependencies
-  - [require-all](https://www.npmjs.com/package/require-all)
+  - [require-all](https://www.npmjs.com/package/require-all) 
   - [BottleJS](https://github.com/young-steveo/bottlejs)
